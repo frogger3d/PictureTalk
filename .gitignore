@@ -33,3 +33,4 @@ bower_components
 obj/
 UpgradeLog.htm
 /PictureTalk/bin/Microsoft.NodejsTools.WebRole.dll
+*.tmp
