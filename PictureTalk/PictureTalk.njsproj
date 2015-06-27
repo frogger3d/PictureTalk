@@ -67,7 +67,7 @@
     <Content Include="public\img\home\yummy.jpg" />
     <Content Include="public\css\style.styl" />
     <Content Include="README.md" />
-    <Content Include="views\index.jade" />
+    <Content Include="views\page.jade" />
     <Content Include="views\layout.jade" />
     <Content Include="views\error.jade" />
   </ItemGroup>

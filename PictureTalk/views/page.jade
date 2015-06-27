@@ -1,0 +1,35 @@
+﻿extends layout
+
+block content
+  .navbar.navbar-default(role='navigation')
+    .container-fluid
+      .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+          a.navbar-brand(href='/') Picture talk
+      .collapse.navbar-collapse
+        ul.nav.navbar-nav
+          each navpage in naventries
+            if navpage.active
+              li.active
+                a(href='/page/' + navpage.id)= navpage.name
+            else
+              li
+                a(href='/page/' + navpage.id)= navpage.name
+
+  .container
+    .row
+      each image in page.images
+        .col-md-2
+          if image.page
+            a(href='/page/' + image.page)
+              .thumbnail
+                img.img-responsive(src='/img/' + page.id + '/' + image.img, alt= image.text)
+                p(style="text-align:center;")= image.text
+          else
+            .thumbnail
+              img.img-responsive(src='/img/' + page.id + '/' + image.img, alt= image.text)
+              p(style="text-align:center;")= image.text

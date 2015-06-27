@@ -1,6 +1,7 @@
 ﻿(function (seedData) {
   seedData.initialPages = [{
-      name: "Home",
+      id: "home",
+      name: "Algemeen",
       images: [{
           text: "Blij",
           img: "happy.jpg"
@@ -9,7 +10,7 @@
           img: "unhappy.jpg"
         }, {
           text: "Gaan",
-          page: "go to",
+          page: "goto",
           img: "goto.jpg"
         }, {
           text: "Voedsel",
@@ -30,7 +31,8 @@
         }
       ]
     }, {
-      name: "goto",
+      id: "goto",
+      name: "Gaan",
       images: [{
           text: "Winkel",
           img: "supermarket.jpg"
@@ -49,7 +51,8 @@
         }
       ]
     }, {
-      name: "food",
+      id: "food",
+      name: "Voedsel",
       images: [
         {
           text: "Ontbijt",
