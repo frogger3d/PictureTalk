@@ -23,7 +23,7 @@ block content
   .container
     .row
       each image in page.images
-        .col-md-2
+        .col-md-2.col-sm-3.col-xs-4
           if image.page
             a(href='/page/' + image.page)
               .thumbnail
