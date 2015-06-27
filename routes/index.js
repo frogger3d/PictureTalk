@@ -7,7 +7,7 @@ var data = require("../data");
 router.get('/', function (req, res) {
   data.getPages(function (err, pages) {
     naventries = pages.map(function (page) {
-      return { name: page.name, active: page == pages[0] };
+      return { id: page.id, name: page.name, active: page == pages[0] };
     });
     res.render('page', { title: 'Picture talk', naventries: naventries, page: pages[0] });
   });
