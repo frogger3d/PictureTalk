@@ -6,7 +6,7 @@ var data = require("../data");
 /* GET home page. */
 router.get('/', function (req, res) {
   data.getPages(function (err, results) {
-    res.render('index', { title: 'Express', results: results });
+    res.render('index', { title: 'Express', results: results, page: results[0] });
   });
 });
 

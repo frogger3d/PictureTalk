@@ -1,7 +1,7 @@
 ﻿extends layout
 
 block content
-    .navbar.navbar-default(role='navigation')
+    //.navbar.navbar-default(role='navigation')
       .container-fluid
         .navbar-header
             button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
@@ -20,8 +20,13 @@ block content
                 a(href='#contact') Contact
 
     .container
-      h1= title
-      p Welcome to #{title}
-      ul
-        each page in results
-          li= page.name + ': ' + page.images.length
+
+      each page in results
+        .row
+          h2 #{page.name}
+        .row
+          each image in page.images
+            .col-md-2
+              .thumbnail
+                img.img-responsive(src='/img/' + page.name + '/' + image.img, alt= image.text)
+                p(style="text-align:center;")= image.text
