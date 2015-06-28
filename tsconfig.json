@@ -1,0 +1,34 @@
+{
+    "version": "1.5.0-alpha",
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "suppressImplicitAnyIndexErrors": true
+    },
+    "filesGlob": [
+        "./**/*.ts",
+        "!./node_modules/**/*.ts"
+    ],
+    "files": [
+        "./app.ts",
+        "./data/index.ts",
+        "./data/seedData.ts",
+        "./routes/index.ts",
+        "./scripts/typings/body-parser/body-parser.d.ts",
+        "./scripts/typings/bootstrap/bootstrap.d.ts",
+        "./scripts/typings/cookie-parser/cookie-parser.d.ts",
+        "./scripts/typings/express/express.d.ts",
+        "./scripts/typings/jquery/jquery.d.ts",
+        "./scripts/typings/mime/mime.d.ts",
+        "./scripts/typings/morgan/morgan.d.ts",
+        "./scripts/typings/node/node.d.ts",
+        "./scripts/typings/serve-favicon/serve-favicon.d.ts",
+        "./scripts/typings/serve-static/serve-static.d.ts",
+        "./scripts/typings/tsd.d.ts"
+    ]
+}

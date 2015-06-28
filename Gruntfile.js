@@ -2,17 +2,17 @@
 var grunt = require('grunt');
 
 grunt.initConfig({
-    
+
     // configure nodemon
     nodemon: {
         dev: {
-            script: './bin/www'
+            script: './app.js'
         }
     },
 
     bowercopy: {
         options: {
-            // Task-specific options go here 
+            // Task-specific options go here
         },
         libs: {
             options: {
@@ -41,4 +41,3 @@ grunt.loadNpmTasks('grunt-bowercopy');
 
 // register the nodemon task when we run grunt
 grunt.registerTask('default', ['nodemon']);
-
