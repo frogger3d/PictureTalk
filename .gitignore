@@ -1,3 +1,8 @@
+*.sublime-grunt.cache
+*.sublime-project
+*.sublime-workspace
+uploads/
+
 # Logs
 logs
 *.log
@@ -34,3 +39,8 @@ obj/
 UpgradeLog.htm
 /PictureTalk/bin/Microsoft.NodejsTools.WebRole.dll
 *.tmp
+
+# typescript
+typings/
+*.js
+*.js.map

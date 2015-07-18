@@ -2,17 +2,63 @@
 var grunt = require('grunt');
 
 grunt.initConfig({
-    
+    pkg: grunt.file.readJSON('package.json'),
+
+    concurrent: {
+        watchers: {
+            tasks: ['nodemon', 'watch'],
+            options: {
+                logConcurrentOutput: true
+            }
+        }
+    },
+
     // configure nodemon
     nodemon: {
         dev: {
-            script: './bin/www'
+            script: './app.js'
+        }
+    },
+
+    watch: {
+        scripts: {
+            files: ["**/*.ts", '!node_modules/**/*.ts'], // the watched files
+            //tasks: ["newer:tslint:all", "ts:build"], // the task to run
+            tasks: ["ts:build"],
+            options: {
+                spawn: false // makes the watch task faster
+            }
+        }
+    },
+
+    ts: {
+        build: {
+            src: ["app.ts", "!node_modules/**/*.ts"], 
+            // Avoid compiling TypeScript files in node_modules
+            options: {
+                module: 'commonjs', 
+                // To compile TypeScript using external modules like NodeJS
+                fast: 'never',
+                // You'll need to recompile all the files each time for NodeJS
+                sourcemap: false,
+                declarations: false
+            }
+        }
+    },
+
+    tslint: {
+        options: {
+            configuration: grunt.file.readJSON("tslint.json")
+        },
+        all: {
+            src: ["app.ts", "!node_modules/**/*.ts", "!obj/**/*.ts", "!typings/**/*.ts"] 
+            // avoid linting typings files and node_modules files
         }
     },
 
     bowercopy: {
         options: {
-            // Task-specific options go here 
+            // Task-specific options go here
         },
         libs: {
             options: {
@@ -33,12 +79,17 @@ grunt.initConfig({
             }
         }
     }
-
 });
 
-grunt.loadNpmTasks('grunt-nodemon');
+grunt.loadNpmTasks("grunt-concurrent");
+grunt.loadNpmTasks("grunt-contrib-watch");
+grunt.loadNpmTasks('grunt-ts');
+grunt.loadNpmTasks("grunt-newer");
+grunt.loadNpmTasks('grunt-tslint');
 grunt.loadNpmTasks('grunt-bowercopy');
+grunt.loadNpmTasks('grunt-nodemon');
 
 // register the nodemon task when we run grunt
-grunt.registerTask('default', ['nodemon']);
-
+grunt.registerTask("deploy", ["ts", "bowercopy"]);
+grunt.registerTask("serve", ["concurrent:watchers"]);
+grunt.registerTask("default", ["serve"]);
