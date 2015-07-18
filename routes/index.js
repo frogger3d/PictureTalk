@@ -12,7 +12,6 @@ var navigationEntry = (function () {
     }
     return navigationEntry;
 })();
-/* GET home page. */
 function index(req, res) {
     data.getData(function (err, pages) {
         var naventries = pages.map(function (page) {
@@ -33,4 +32,3 @@ function page(req, res) {
         res.render('page', { title: 'Picture talk', naventries: naventries, page: currentPage[0] });
     });
 }
-//# sourceMappingURL=index.js.map

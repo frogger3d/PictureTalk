@@ -1,5 +1,5 @@
 /// <reference path="./scripts/typings/tsd.d.ts" />
-var __extends = this.__extends || function (d, b) {
+var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
@@ -10,20 +10,42 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var multer = require('multer');
 var routes = require('./routes/index');
 var app = express();
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
+console.log("starting ... doing stuff . bliep bloep");
+var done = false;
+app.use(multer({
+    dest: './uploads/',
+    rename: function (fieldname, filename) {
+        return filename + Date.now();
+    },
+    onFileUploadStart: function (file, req, res) {
+        console.log(file.originalname + ' is starting ...');
+    },
+    onFileUploadComplete: function (file, req, res) {
+        console.log(file.fieldname + ' uploaded to ' + file.path);
+        done = true;
+    }
+}));
 routes.initialize(app);
+app.get('/send-photo', function (req, res) {
+    res.sendfile("./public/send-photo.html");
+});
+app.post('/api/photo', function (req, res) {
+    if (done == true) {
+        console.log(req.files);
+        res.end("File uploaded.");
+    }
+});
 var HttpError = (function (_super) {
     __extends(HttpError, _super);
     function HttpError(message) {
@@ -39,15 +61,11 @@ var HttpError = (function (_super) {
     return HttpError;
 })(Error);
 exports.HttpError = HttpError;
-// catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new HttpError('Not Found');
     err.status = 404;
     next(err);
 });
-// error handlers
-// development error handler
-// will print stacktrace
 if (app.get('env') === 'development') {
     app.use(function (err, req, res, next) {
         res.status(err.status || 500);
@@ -57,8 +75,6 @@ if (app.get('env') === 'development') {
         });
     });
 }
-// production error handler
-// no stacktraces leaked to user
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
@@ -70,4 +86,3 @@ app.set('port', process.env.PORT || 3000);
 var server = app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + server.address().port);
 });
-//# sourceMappingURL=app.js.map

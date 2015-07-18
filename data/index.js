@@ -4,4 +4,3 @@ function getData(next) {
 }
 exports.getData = getData;
 ;
-//# sourceMappingURL=index.js.map
