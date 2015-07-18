@@ -38,8 +38,10 @@ grunt.initConfig({
             options: {
                 module: 'commonjs', 
                 // To compile TypeScript using external modules like NodeJS
-                fast: 'never' 
+                fast: 'never',
                 // You'll need to recompile all the files each time for NodeJS
+                sourcemap: false,
+                declarations: false
             }
         }
     },
@@ -88,5 +90,6 @@ grunt.loadNpmTasks('grunt-bowercopy');
 grunt.loadNpmTasks('grunt-nodemon');
 
 // register the nodemon task when we run grunt
+grunt.registerTask("deploy", ["ts", "bowercopy"]);
 grunt.registerTask("serve", ["concurrent:watchers"]);
 grunt.registerTask("default", ["serve"]);
