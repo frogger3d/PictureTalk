@@ -1,12 +1,12 @@
-﻿/// <binding AfterBuild='bowercopy' />
-var grunt = require('grunt');
+﻿/// <binding AfterBuild="bowercopy" />
+var grunt = require("grunt");
 
 grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+    pkg: grunt.file.readJSON("package.json"),
 
     concurrent: {
         watchers: {
-            tasks: ['nodemon', 'watch'],
+            tasks: ["nodemon", "watch"],
             options: {
                 logConcurrentOutput: true
             }
@@ -16,13 +16,13 @@ grunt.initConfig({
     // configure nodemon
     nodemon: {
         dev: {
-            script: './app.js'
+            script: "./app.js"
         }
     },
 
     watch: {
         scripts: {
-            files: ["**/*.ts", '!node_modules/**/*.ts'], // the watched files
+            files: ["**/*.ts", "!node_modules/**/*.ts"], // the watched files
             //tasks: ["newer:tslint:all", "ts:build"], // the task to run
             tasks: ["ts:build"],
             options: {
@@ -36,10 +36,10 @@ grunt.initConfig({
             src: ["app.ts", "!node_modules/**/*.ts"], 
             // Avoid compiling TypeScript files in node_modules
             options: {
-                module: 'commonjs', 
+                module: "commonjs", 
                 // To compile TypeScript using external modules like NodeJS
-                fast: 'never',
-                // You'll need to recompile all the files each time for NodeJS
+                fast: "never",
+                // You"ll need to recompile all the files each time for NodeJS
                 sourcemap: false,
                 declarations: false
             }
@@ -62,20 +62,20 @@ grunt.initConfig({
         },
         libs: {
             options: {
-                destPrefix: 'public/js/libs'
+                destPrefix: "public/js/libs"
             },
             files: {
-                'jquery.js': 'jquery/dist/jquery.js',
-                'bootstrap.js': 'bootstrap/dist/js/bootstrap.js'
+                "jquery.js": "jquery/dist/jquery.js",
+                "bootstrap.js": "bootstrap/dist/js/bootstrap.js"
             },
         },
         css: {
             options: {
-                destPrefix: 'public/css/libs'
+                destPrefix: "public/css/libs"
             },
             files: {
-                'bootstrap.css': 'bootstrap/dist/css/bootstrap.css',
-                'bootstrap-theme.css': 'bootstrap/dist/css/bootstrap-theme.css'
+                "bootstrap.css": "bootstrap/dist/css/bootstrap.css",
+                "bootstrap-theme.css": "bootstrap/dist/css/bootstrap-theme.css"
             }
         }
     }
@@ -83,11 +83,11 @@ grunt.initConfig({
 
 grunt.loadNpmTasks("grunt-concurrent");
 grunt.loadNpmTasks("grunt-contrib-watch");
-grunt.loadNpmTasks('grunt-ts');
+grunt.loadNpmTasks("grunt-ts");
 grunt.loadNpmTasks("grunt-newer");
-grunt.loadNpmTasks('grunt-tslint');
-grunt.loadNpmTasks('grunt-bowercopy');
-grunt.loadNpmTasks('grunt-nodemon');
+grunt.loadNpmTasks("grunt-tslint");
+grunt.loadNpmTasks("grunt-bowercopy");
+grunt.loadNpmTasks("grunt-nodemon");
 
 // register the nodemon task when we run grunt
 grunt.registerTask("deploy", ["ts", "bowercopy"]);

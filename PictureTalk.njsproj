@@ -72,6 +72,7 @@
     <Content Include="views\page.jade" />
     <Content Include="views\layout.jade" />
     <Content Include="views\error.jade" />
+    <TypeScriptCompile Include="routes\photo.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="data\" />

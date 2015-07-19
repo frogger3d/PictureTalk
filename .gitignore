@@ -42,5 +42,5 @@ UpgradeLog.htm
 
 # typescript
 typings/
-*.js
-*.js.map
+#*.js
+#*.js.map
