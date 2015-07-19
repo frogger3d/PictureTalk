@@ -105,7 +105,12 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   popd
 )
 
-grunt deploy
+:: CUSTOM: compile TypeScript files
+call :ExecuteCmd !NPM_CMD! install TypeScript
+IF !ERRORLEVEL! NEQ 0 goto error
+set tsc = call :ExecuteCmd !NPM_CMD! .\node_modules\TypeScript\bin\tsc.js
+%tsc% --sourcemap .\app.ts
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
