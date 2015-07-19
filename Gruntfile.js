@@ -51,7 +51,7 @@ grunt.initConfig({
             configuration: grunt.file.readJSON("tslint.json")
         },
         all: {
-            src: ["app.ts", "!node_modules/**/*.ts", "!obj/**/*.ts", "!typings/**/*.ts"] 
+            src: ["**/*.ts", "!node_modules/**/*.ts", "!obj/**/*.ts", "!scripts/typings/**/*.ts"] 
             // avoid linting typings files and node_modules files
         }
     },

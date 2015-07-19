@@ -1,4 +1,5 @@
-/// <reference path="../scripts/typings/tsd.d.ts" />
+/// <reference path="../scripts/typings/multer/multer.d.ts" />
+/// <reference path="../scripts/typings/express/express.d.ts" />
 
 import express = require("express");
 import multer = require("multer");
@@ -14,8 +15,8 @@ router.use(multer(
 		onFileUploadStart: function(file, req, res) {
 			console.log(file.originalname + " is starting ...");
 		},
-		onFileUploadComplete: function(file, req, res) {
-			console.log(file.fieldname + " uploaded to " + file.path);
+        onFileUploadComplete: function (file, req, res) {
+            console.log(file.fieldname + " uploaded to " + file.path);
 		}
 	}));
 

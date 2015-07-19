@@ -1,4 +1,5 @@
-/// <reference path="../scripts/typings/tsd.d.ts" />
+/// <reference path="../scripts/typings/multer/multer.d.ts" />
+/// <reference path="../scripts/typings/express/express.d.ts" />
 var express = require("express");
 var multer = require("multer");
 var router = express.Router();

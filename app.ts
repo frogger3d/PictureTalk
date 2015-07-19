@@ -9,7 +9,7 @@ import bodyParser = require("body-parser");
 
 import routes = require("./routes/index");
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -23,8 +23,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require("stylus").middleware(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "public")));
-
-console.log("starting ... doing stuff . bliep bloep");
 
 app.use(routes);
 
@@ -50,7 +48,7 @@ export class HttpError extends Error {
 
 // catch 404 and forward to error handler
 app.use(function(req: express.Request, res: express.Response, next) {
-    var err = new HttpError("Not Found");
+    let err = new HttpError("Not Found");
     err.status = 404;
     next(err);
 });
@@ -63,8 +61,8 @@ if (app.get("env") === "development") {
     app.use(function(err, req: express.Request, res: express.Response, next) {
         res.status(err.status || 500);
         res.render("error", {
-            message: err.message,
-            error: err
+            error: err,
+            message: err.message
         });
     });
 }
@@ -74,13 +72,13 @@ if (app.get("env") === "development") {
 app.use(function(err, req: express.Request, res: express.Response, next) {
     res.status(err.status || 500);
     res.render("error", {
-        message: err.message,
-        error: {}
+        error: {},
+        message: err.message
     });
 });
 
 app.set("port", process.env.PORT || 3000);
 
-var server = app.listen(app.get("port"), function() {
+const server = app.listen(app.get("port"), function() {
     console.log("Express server listening on port " + server.address().port);
 });
