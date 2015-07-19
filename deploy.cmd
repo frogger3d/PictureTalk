@@ -119,7 +119,7 @@ echo TypeScript compiler not found
 exit 999
 
 :buildtsc
-%tsc% .\app.ts
+call :ExecuteCmd %tsc% .\app.ts --module commonjs
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
