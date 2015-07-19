@@ -106,7 +106,20 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 )
 
 :: CUSTOM: compile TypeScript files
-tsc .\app.ts
+if exists "%ProgramFiles(x86)%\Microsoft SDKs\TypeScript\1.4\tsc.exe" (
+  set tsc = "%ProgramFiles(x86)%\Microsoft SDKs\TypeScript\1.4\tsc.exe"
+  goto :buildtsc
+)
+if exists "%ProgramFiles%\Microsoft SDKs\TypeScript\1.4\tsc.exe" (
+  set tsc = "%ProgramFiles%\Microsoft SDKs\TypeScript\1.4\tsc.exe"
+  goto :buildtsc
+)
+
+echo TypeScript compiler not found
+exit 999
+
+:buildtsc
+%tsc% .\app.ts
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
