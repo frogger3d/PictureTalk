@@ -1,20 +1,20 @@
 /// <reference path="../scripts/typings/tsd.d.ts" />
-var express = require('express');
-var multer = require('multer');
+var express = require("express");
+var multer = require("multer");
 var router = express.Router();
 router.use(multer({
-    dest: './uploads/',
+    dest: "./uploads/",
     rename: function (fieldname, filename) {
         return filename + Date.now();
     },
     onFileUploadStart: function (file, req, res) {
-        console.log(file.originalname + ' is starting ...');
+        console.log(file.originalname + " is starting ...");
     },
     onFileUploadComplete: function (file, req, res) {
-        console.log(file.fieldname + ' uploaded to ' + file.path);
+        console.log(file.fieldname + " uploaded to " + file.path);
     }
 }));
-router.get('/photo', apiphoto);
+router.get("/photo", apiphoto);
 var done = false;
 function apiphoto(req, res) {
     if (done == true) {

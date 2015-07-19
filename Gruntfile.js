@@ -1,4 +1,4 @@
-﻿/// <binding AfterBuild="bowercopy" />
+/// <binding />
 var grunt = require("grunt");
 
 grunt.initConfig({

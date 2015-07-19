@@ -1,4 +1,4 @@
-var seedData = require('./seedData');
+var seedData = require("./seedData");
 function getData(next) {
     next(null, seedData.getSeed());
 }

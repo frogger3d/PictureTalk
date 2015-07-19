@@ -8,7 +8,6 @@ import cookieParser = require("cookie-parser");
 import bodyParser = require("body-parser");
 
 import routes = require("./routes/index");
-import photo = require("./routes/photo");
 
 var app = express();
 
@@ -27,8 +26,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 console.log("starting ... doing stuff . bliep bloep");
 
-app.use("/api", photo);
-app.use("/", routes);
+app.use(routes);
 
 export declare class Error {
     public name: string;
